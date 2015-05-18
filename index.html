@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    </head>
+    <body ng-app="demo">
+        <div class="container" ng-controller="DemoController">
+            <h1>Forms</h1>
+
+            <p>Povpraševanje: <select ng-options="item.name for item in selectedForm" ng-model="item" ></select></p>
+
+            <form name="sampleForm" ng-if="item.id > 0" ng-submit="submitForm();" novalidate>
+                <p>Ime in priimek <input type="text" class="form-control" name="nameSurname" ng-model="nameSurname" ng-required="true" /></p>
+                <p ng-show="sampleForm.nameSurname.$error.required && sampleForm.nameSurname.$dirty">To polje je obvezno!</p>
+                <p>E-poštni naslov <input type="email" class="form-control" name="emailAddress" ng-model="emailAddress" ng-required="true" /></p>
+                <p ng-show="sampleForm.emailAddress.$error.required && sampleForm.emailAddress.$dirty">To polje je obvezno!</p>
+                <p ng-show="!sampleForm.emailAddress.$valid && sampleForm.emailAddress.$dirty">Email ni v pravi obliki!</p>
+                <p>Telefon <input type="text" class="form-control" name="phone" ng-model="phone" /></p>
+                <p>Naslov <input type="text" class="form-control" name="address" ng-model="address" /></p>
+                <p>Poštna številka <input type="text" class="form-control" name="zip" ng-model="zip" /></p>
+                <p>Kraj <input type="text" class="form-control" name="city" ng-model="city" /></p>
+
+                <div ng-if="item.id == 1">
+                    <p>Koliko podstrani bo imela vaša stran? <input type="text" class="form-control" name="pages" ng-model="pages" ng-required="true" /></p>
+                    <p ng-show="sampleForm.pages.$error.required && sampleForm.pages.$dirty">To polje je obvezno!</p>                    
+                    <p>Vas zanima tudi oblikovanje? <input type="text" class="form-control" name="design" ng-model="design" ng-required="true" /></p>
+                    <p ng-show="sampleForm.design.$error.required && sampleForm.design.$dirty">To polje je obvezno!</p>  
+                </div>
+                <div ng-if="item.id == 2">
+                    <p>Koliko polj bo imel vaš obrazec? <input type="text" class="form-control" name="fields" ng-model="fields" ng-required="true" /></p>
+                    <p ng-show="sampleForm.fields.$error.required && sampleForm.fields.$dirty">To polje je obvezno!</p>
+                    <p>Vas zanima napreden izpis napak?  <input type="text" class="form-control" name="errors" ng-model="errors" ng-required="true" /></p>
+                    <p ng-show="sampleForm.errors.$error.required && sampleForm.errors.$dirty">To polje je obvezno!</p>                    
+                </div>
+                <div ng-if="item.id == 3">
+                    <p>Vaše vprašanje? <input type="text" class="form-control" name="question" ng-model="question" ng-required="true" /></p>
+                    <p ng-show="sampleForm.question.$error.required && sampleForm.question.$dirty">To polje je obvezno!</p>                    
+                </div>
+                <button type="submit" class="btn btn-primary" ng-disabled="sampleForm.$invalid">Pošlji</button>
+            </form>
+
+        </div>
+        <script src="js/main.js"></script>
+    </body>
+</html>
